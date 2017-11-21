@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='http://getbootstrap.com/dist/css/bootstrap.min.css' />
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <script src="/socket.io/socket.io.js"></script>
+  </head>
+  <body>
+    <div class="container" id="todo">
+      <h1><%= title %></h1>
+      <h1 v-if="user.loggedIn">Bem vindo {{ user.email }}</h1>
+      <h3>{{subtitle}}</h3>
+      <h5>{{token}}</h5>
+      <p>Welcome to <%= title %></p>
+      <div id="app-5">
+        <p>{{ subtitle }}</p>
+        <input type="text" v-model="text">
+        <button @click="sendMessage">Send Message</button>
+      </div>
+      <ol>
+        <li v-for="message in messages">
+          {{ message }}
+        </li>
+      </ol>
+    </div>
+  </body>
+  <script src="https://unpkg.com/vue/dist/vue.js"></script>
+  <script src="https://cdn.jsdelivr.net/vue.resource/1.0.3/vue-resource.min.js"></script>
+  <script src="/javascripts/app.js"></script>
+</html>
