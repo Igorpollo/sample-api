@@ -8,6 +8,7 @@ var clientSchema   = new Schema({
       unique: true
     },
     userId: String,
+    numero: String
     
 });
 
