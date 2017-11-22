@@ -7,6 +7,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var passport = require('passport')
 var socket_io    = require( "socket.io" );
+var config = require('./config');
 
 var User = require('./models/user')
 var JwtStrategy = require('passport-jwt').Strategy,
@@ -46,7 +47,7 @@ app.use(function(req, res, next) {
 
 //mongo connect
 var mongoose   = require('mongoose');
-mongoose.connect('mongodb://pollo:i4g3o2r1@ds255265.mlab.com:55265/nucleo');
+mongoose.connect(config.MONGO_ADRESS);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
