@@ -4,12 +4,11 @@ var Schema       = mongoose.Schema;
 var clientSchema   = new Schema({
   name: {
       type: String,
-      required: true,
-      unique: true
+      required: true
     },
     userId: String,
     address: [{street: String, number: String, CEP: String, name: String}],
-    
+
     
 });
 
