@@ -19,7 +19,7 @@ var Client = require('../models/client')
     //CREATE NEW CLIENT
 	router.post('/', passport.authenticate('jwt', { session: false }),function(req, res) {
     	
-    	var client = new Client({ name: req.body.name, userId: req.user._id });
+    	var client = new Client({ name: req.body.name, userId: req.user._id, address: req.body.address});
         client.save(function (err, client) {
 		  res.json(client);
 		});
