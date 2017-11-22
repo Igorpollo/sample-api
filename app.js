@@ -46,7 +46,7 @@ app.use(function(req, res, next) {
 
 //mongo connect
 var mongoose   = require('mongoose');
-mongoose.connect('mongodb://localhost:27017/timetask2');
+mongoose.connect('mongodb://pollo:i4g3o2r1@ds255265.mlab.com:55265/nucleo');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
