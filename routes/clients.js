@@ -25,40 +25,33 @@ var Client = require('../models/client')
 		});
     });
 
+	// UPDATE CLIENT
     router.put('/:id', passport.authenticate('jwt', { session: false }),function(req, res) {
 
     	updatedClient = req.body;
 
-    	Client.findOneAndUpdate({_id: req.params.id, userId: req.user._id }, updatedClient, { new: true }, function (err, newclient) {
+    	Client.findOneAndUpdate({_id: req.params.id, userId: req.user._id }, updatedClient, { new: true }, function (err, upClient) {
 	      if (err) {
 	        console.log(err);
 	        return res.status(400).json({ message: err });
 	      }
-	      return res.status(200).json(newclient);
-	    });
+	      return res.status(200).json(upClient);
+		});
+		
+	});
+	//DELETE CLIENT
+	router.delete('/:id', passport.authenticate('jwt', {session: false}), function(req, res) {
+		Client.find({{_id: req.params.id, userId: req.user._id}).remove(function(err, success){
+			if (err) {
+				res.send('Não foi possível deletar o cliente');
+			} else {
+				res.json({status: 'sucess'})
+			}
+		});
+	})
 
-    		/*
-    		
-    		Client.findOne({_id: req.params.id, userId: req.user._id}, function (err, user) {
 
-    			if(!user) {
-    				res.send('não foi possivel encontrar o usuario');
-    				res.end();
-    			}
-
-    			user = req.body
- 
-			    user.save(function (err) {
-			        if(err) {
-			            console.error('ERROR!');
-			        } else {
-			        	res.send('sucesso')
-			        }
-			    });
-			});	 
-			*/
-
-    });
+    
 
 
    
