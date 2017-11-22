@@ -45,7 +45,7 @@ var Client = require('../models/client')
 			if (err) {
 				res.send('Não foi possível deletar o cliente');
 			} else {
-				res.json({status: 'sucess'})
+				res.json({status: 'success'})
 			}
 		});
 	})
