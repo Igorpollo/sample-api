@@ -47,7 +47,7 @@ app.use(function(req, res, next) {
 
 //mongo connect
 var mongoose   = require('mongoose');
-mongoose.connect(config.MONGO_ADRESS);
+mongoose.connect(config);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
