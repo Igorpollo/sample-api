@@ -19,10 +19,23 @@ var Client = require('../models/client')
     //CREATE NEW CLIENT
 	router.post('/', passport.authenticate('jwt', { session: false }),function(req, res) {
     	
-    	var client = new Client({ name: req.body.name, userId: req.user._id, address: req.body.address});
+    	var client = new Client({ name: req.body.name, userId: req.user._id, addresses: [{ street: 'Matt' }]});
         client.save(function (err, client) {
 		  res.json(client);
 		});
+    });
+
+    // RETURN CLIENT INFO
+    router.get('/:id', passport.authenticate('jwt', { session: false }),function(req, res) {
+    
+        Client.
+		  findOne({ _id: req.params.id }).
+		  populate('userId').
+		  exec(function (err, client) {
+		    if (err) return handleError(err);
+		    res.send(client);
+		    // prints "The author is Ian Fleming"
+		  });
     });
 
 	// UPDATE CLIENT
