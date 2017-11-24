@@ -1,6 +1,7 @@
 var mongoose     = require('mongoose');
 var Schema       = mongoose.Schema;
 var User = require('./user');
+var Address = require('./address');
 
 var clientSchema   = new Schema({
   name: {
@@ -8,7 +9,7 @@ var clientSchema   = new Schema({
       required: true
     },
     userId: { type: Schema.Types.ObjectId, ref: 'User' },
-    addresses: [{street: String}]
+    addresses: [{type: Schema.Types.ObjectId, ref: 'Address'}]
 
     
 });

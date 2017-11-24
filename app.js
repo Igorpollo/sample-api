@@ -65,10 +65,12 @@ app.use(express.static(path.join(__dirname, 'public')));
 var index = require('./routes/index')(io);
 var users = require('./routes/users');
 var clients = require('./routes/clients')(io);
+var address = require('./routes/address')(io);
 
 app.use('/', index);
 app.use('/users', users);
 app.use('/clients', clients);
+app.use('/clients/address', address);
 
 
 

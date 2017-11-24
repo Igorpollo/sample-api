@@ -55,7 +55,7 @@ var Client = require('../models/client')
 	router.delete('/:id', passport.authenticate('jwt', {session: false}), function(req, res) {
 		Client.find({_id: req.params.id, userId: req.user._id}).remove(function(err, success){
 			if (err) {
-				res.send('Não foi possível deletar o cliente');
+				res.send('Não foi possível deletar o cliente!');
 			} else {
 				res.json({success: true, message: 'Deletado com sucesso!'})
 			}
