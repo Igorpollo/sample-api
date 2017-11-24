@@ -34,7 +34,6 @@ var Client = require('../models/client')
 		  exec(function (err, client) {
 		    if (err) return handleError(err);
 		    res.send(client);
-		    // prints "The author is Ian Fleming"
 		  });
     });
 
