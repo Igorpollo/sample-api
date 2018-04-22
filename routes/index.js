@@ -40,11 +40,12 @@ router.get('/signup', function(req, res, next) {
 });
 
 router.post('/signup', function(req, res, next) {
+
+    var password = bcrypt.hashSync(req.body.password);
+    req.body.password = password
     var body = req.body
 
-    var hash = bcrypt.hashSync(body.password);
-
-    var newUser = new User({email: body.email, password: hash});
+    var newUser = new User(body);
     newUser.save()
     .then(() => res.json({success: true, data: newUser}))
     .catch(err => res.json(err));
