@@ -6,6 +6,7 @@ var vmIndex = new Vue({
     subtitle: 'Hello Vue.js!',
     text: '',
     messages: [],
+    cotacao: '',
     token: '',
     user: {
       logedIn: false
@@ -41,4 +42,8 @@ created: function () {
 socket.on('chatMessage', function(msg){
   console.log('Client side message: ' + msg)
   vmIndex.messages.push(msg);
+});
+
+socket.on('cotacao', function(msg){
+  vmIndex.cotacao = msg;
 });

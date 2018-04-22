@@ -8,6 +8,7 @@ var bodyParser = require('body-parser');
 var passport = require('passport')
 var socket_io    = require( "socket.io" );
 var config = require('./config');
+var axios = require('axios');
 
 var User = require('./models/user')
 var JwtStrategy = require('passport-jwt').Strategy,
@@ -70,8 +71,6 @@ var address = require('./routes/address')(io);
 app.use('/', index);
 app.use('/users', users);
 app.use('/clients', clients);
-app.use('/clients/address', address);
-
 
 
 // catch 404 and forward to error handler
@@ -95,12 +94,25 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
+var i = 0;
+
+setInterval(function() {
+
+    axios.get('https://www.mercadobitcoin.net/api/BTC/ticker/').then(function(response) {
+    var volume = response.data.ticker.vol
+    i = i + 1
+    io.emit('cotacao', volume.toLocaleString('de-DE'));
+    console.log(i)
+    });
+  }, 3000)
+
 // SOCKET.IO
 io.on('connection', function(socket) {
   socket.on('chatMessage', function(msg){
     console.log('mensagem recebida');
     io.emit('chatMessage', msg);
   });
+
 });
 
 

@@ -8,12 +8,12 @@ var userSchema   = new Schema({
       unique: true
     },
     password: String,
-    name: {type: String, required: true},
-    city: {type: String, required: true},
-    address: {type: String, required: true},
-    number: {type: String, required: true},
+    name: {type: String, required: false},
+    city: {type: String, required: false},
+    address: {type: String, required: false},
+    number: {type: String, required: false},
     complement: {type: String},
-    CEP: {type: String, required: true},
+    CEP: {type: String, required: false},
 
 
 });
