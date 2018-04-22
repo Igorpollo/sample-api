@@ -46,10 +46,9 @@ router.post('/signup', function(req, res, next) {
 
     var newUser = new User({email: body.email, password: hash});
     newUser.save()
-      .then(() => console.log('Success saving admin1!'))
-      .catch(err => console.error('admin1 could not be saved: ', err));
+    .then(() => res.json({success: true, data: newUser}))
+    .catch(err => res.json(err));
 
-  res.render('index', {title: 'Salvo com sucesso'})
 });
 
 //USERS-LOGIN
@@ -70,13 +69,13 @@ router.post('/login', function(req, res, next) {
              payload = {id: user.id}
             var token = jwt.sign(payload, 'sh');
             res.json({
-              success: 'ok',
+              success: true,
               message: 'Logado com sucesso!',
               token: token
             });
           } else {
             res.json({
-              success: 'nope',
+              success: false,
               message: 'Login ou senha inválidos!',
             });
           }
